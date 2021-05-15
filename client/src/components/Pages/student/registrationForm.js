@@ -68,7 +68,7 @@ function RegistrationForm() {
        semester: semester,
        fileUrl: fileUrl
      }
-     let data = await axios.post(`http://localhost:8000/student/uploadForm/${localStorage.userId}`, form);
+     let data = await axios.post(`/api/student/uploadForm/${localStorage.userId}`, form);
      console.log(data);
 
      SetButtonText('submit');

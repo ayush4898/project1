@@ -24,6 +24,7 @@
     "express-fileupload": "^1.2.1",
     "express-session": "^1.17.1",
     "google-auth-library": "^7.0.4",
+    "heroku": "^7.53.1",
     "mongoose": "^5.12.6",
     "nodemailer": "^6.6.0",
     "passport": "^0.4.1",
