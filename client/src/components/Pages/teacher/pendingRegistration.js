@@ -16,7 +16,7 @@ export default function PendingReg() {
   const [user, setUser] = useState('');
 
   const handleUser = () => {
-    axios.get('/allReg')
+    axios.get('/api/allReg')
       .then(data => {
         console.log(data.data.reg)
         setUser(data.data.reg);
@@ -29,14 +29,14 @@ export default function PendingReg() {
 
   const handleVerified = (formId) => {
     console.log(formId)
-    axios.post(`/student/status?id=${formId}&value=verified`)
+    axios.post(`/api/student/status?id=${formId}&value=verified`)
       .then(res => {
         handleUser();
       })
   }
   const handleRejected = (formId) => {
     console.log(formId)
-    axios.post(`/student/status?id=${formId}&value=rejected`)
+    axios.post(`/api/student/status?id=${formId}&value=rejected`)
       .then(res => {
         console.log(res)
         handleUser();

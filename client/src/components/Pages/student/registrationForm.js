@@ -24,7 +24,7 @@ function RegistrationForm() {
   const history = useHistory();
 
   useEffect(() => {
-    axios.get(`/user/${localStorage.userId}`)
+    axios.get(`/api/user/${localStorage.userId}`)
       .then((data) => {
         console.log('user data', data.data.user);
         setUser(data.data.user);

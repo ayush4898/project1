@@ -83,7 +83,7 @@ const Navbar=(props)=> {
     };
     useEffect(() => {
       // getting user details by api call
-      axios.get(`/user/${localStorage.getItem('userId')}`)
+      axios.get(`/api/user/${localStorage.getItem('userId')}`)
         .then((data) => {
           console.log(data.data.user);
           setUserData(data.data.user);

@@ -66,7 +66,7 @@ toast.configure();
                   rollno: values.rollno,
                   programme: program
                 }
-                axios.post(`/create-student`,user )
+                axios.post(`/api/create-student`,user )
                 .then(res => {
                   console.log(res);
                   if(res.data.error){

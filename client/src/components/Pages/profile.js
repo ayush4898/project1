@@ -27,7 +27,7 @@ const About = () => {
 
   useEffect(() => {
     // getting user details by api call
-    axios.get(`/user/${localStorage.getItem('userId')}`)
+    axios.get(`/api/user/${localStorage.getItem('userId')}`)
       .then((data) => {
         console.log(data.data.user);
         setUser(data.data.user);

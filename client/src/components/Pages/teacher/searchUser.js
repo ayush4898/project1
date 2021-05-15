@@ -13,7 +13,7 @@ export default function SearchUser() {
   const [items, setItems] = useState();
 
   useEffect(() => {
-    axios.get('/users')
+    axios.get('/api/users')
       .then(data => {
         console.log(data.data.user)
         setUser(data.data.user);

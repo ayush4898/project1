@@ -26,7 +26,7 @@ const Status = () => {
   let [forms, setForms] = useState([]);
 
   useEffect(() => {
-    axios.get(`/student/form/${localStorage.userId}`)
+    axios.get(`/api/student/form/${localStorage.userId}`)
       .then(res => {
         console.log(res.data.forms);
         if (res.data.forms.length !== 0)

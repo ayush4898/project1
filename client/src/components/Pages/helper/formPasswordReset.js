@@ -52,7 +52,7 @@ export default class FormPasswordReset extends Component {
   }) => {
     // fake async login
     setTimeout(async () => {
-      axios.post(`/changePassword/${localStorage.userId}`, { currentPassword: currentPass ,newPassword: newPass })
+      axios.post(`/api/changePassword/${localStorage.userId}`, { currentPassword: currentPass ,newPassword: newPass })
         .then((data) => {
           console.log(data);
           setSubmitting(false)

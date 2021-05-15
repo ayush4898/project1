@@ -76,7 +76,7 @@ const Login = (props) => {
   const responseSuccessGoogle = (res) => {
       axios({
         method: "POST",
-        url: '/googleLogin',
+        url: '/api/googleLogin',
         data: { tokenId: res.tokenId }
       }).then((respond) => {
         setResponse({
@@ -125,7 +125,7 @@ const Login = (props) => {
       password: values.password,
       type: values.type
       };
-      axios.post('/', user)
+      axios.post('/api/', user)
       .then((respond) => {
           setResponse({
           ...response,

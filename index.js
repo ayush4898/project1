@@ -12,14 +12,29 @@ const bodyParser = require('body-parser');
     const db = require('./config/mongoose.js');  // using mongoose to connect to mongo db
 const fileUpload = require('express-fileupload');
 
-    const app = express();
+const app = express();
+const whitelist = ['http://localhost:3000', 'http://localhost:8000', 'https://stark-everglades-73789.herokuapp.com']
+const corsOptions = {
+  origin: function (origin, callback) {
+    console.log("** Origin of request " + origin)
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      console.log("Origin acceptable")
+      callback(null, true)
+    } else {
+      console.log("Origin rejected")
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions));
+
 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(express.json());
     app.use(cookieParser()); // to fetch the cookie in req
-    app.use(cors());
+    
     app.use(express.static('public'));
 app.use(fileUpload());
 
@@ -49,11 +64,15 @@ app.use(fileUpload());
     app.use(passport.session());
     app.use(passport.setAuthenticatedUser);
 
-app.use('/', require('./routes'));
+app.use('/api/', require('./routes'));
     
-if (process.env.NODE_ENV === 'production')
-{
-    app.use(express.static('client/build/'));
+if (process.env.NODE_ENV === 'production') {
+    // Serve any static files
+    app.use(express.static(path.join(__dirname, 'client/build')));
+    // Handle React routing, return all requests to React app
+    app.get('*', function (req, res) {
+        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    });
 }
 
     app.listen(port, (err) => {
