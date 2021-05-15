@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<head></head>
+<body>
+    <div>
+         <p>Dear Students,</p> 
+        <p>Thank you for submission of your Registration Form application form through our Student Portal.</p>
+       <% if(form.isVerified == "verified" )  { %>
+            <p> Your Registration Form for semseter <%= form.semester %> has been <strong>verified</strong> successfully!!. </p>
+        <%}else { %>
+            <p> Your Registration Form for semseter <%= form.semester %> has been <strong>rejected</strong>!!.</p>
+            <p>Please contact your respective department for further process.</p>
+       <% } %>
+       <p>Registration Form : <%= form.file %></p>
+        <p>........................................................................................................................................
+        </p>
+        <p>Thanks and Regards</p>
+        <p>Student Registration Portal</p>
+    </div>
+</body>
