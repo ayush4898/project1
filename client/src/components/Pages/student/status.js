@@ -28,7 +28,7 @@ const Status = () => {
   useEffect(() => {
     axios.get(`/api/student/form/${localStorage.userId}`)
       .then(res => {
-        console.log(res.data.forms);
+        //console.log(res.data.forms);
         if (res.data.forms.length !== 0)
         {
           setEmpty(false);
@@ -39,7 +39,7 @@ const Status = () => {
         setForms(data);
       })
       .catch(Error => {
-        console.lof(Error);
+        //console.lof(Error);
       });
   },[])
 

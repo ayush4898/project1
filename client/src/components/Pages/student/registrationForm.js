@@ -9,12 +9,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import * as Yup from 'yup';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/storage'; 
 import Notification from '../../toasts'
 
 
- 
-  
 function RegistrationForm() {
   const [user, setUser] = useState();
   const [uploadedFile, setFile] = useState(null);
@@ -26,7 +25,7 @@ function RegistrationForm() {
   useEffect(() => {
     axios.get(`/api/user/${localStorage.userId}`)
       .then((data) => {
-        console.log('user data', data.data.user);
+        //console.log('user data', data.data.user);
         setUser(data.data.user);
       });
    }, []);
@@ -42,7 +41,7 @@ function RegistrationForm() {
       const fileUrl = await fileRef.getDownloadURL();
       setUrl(fileUrl);
     } catch (error) {
-      console.log(`error!!`, error);
+      //console.log(`error!!`, error);
     }
     
   };
@@ -59,7 +58,7 @@ function RegistrationForm() {
     SetButtonText("Submitting ...");
     try {
      handleFile(uploadedFile);
-     console.log(value);
+     //console.log(value);
      let form = {
        name: user.name,
        email: user.email,
@@ -69,7 +68,7 @@ function RegistrationForm() {
        fileUrl: fileUrl
      }
      let data = await axios.post(`/api/student/uploadForm/${localStorage.userId}`, form);
-     console.log(data);
+     //console.log(data);
 
      SetButtonText('submit');
      setSemester('');
@@ -78,7 +77,7 @@ function RegistrationForm() {
      !data.data.isSubmit && Notification('fail', data.data.message); 
      
    } catch (error) {
-     console.log(error);
+     //console.log(error);
        Notification('fail', error); 
    }
   };
@@ -95,7 +94,7 @@ function RegistrationForm() {
   };
   const handleChange = (event) => {
     setSemester(event.target.value);
-    console.log('user', user.email);
+    //console.log('user', user.email);
   };
   return (
     <div>

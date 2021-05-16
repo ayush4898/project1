@@ -29,7 +29,7 @@ const About = () => {
     // getting user details by api call
     axios.get(`/api/user/${localStorage.getItem('userId')}`)
       .then((data) => {
-        console.log(data.data.user);
+        //console.log(data.data.user);
         setUser(data.data.user);
       });
   },[]);

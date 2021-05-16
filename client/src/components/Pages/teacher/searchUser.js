@@ -15,7 +15,7 @@ export default function SearchUser() {
   useEffect(() => {
     axios.get('/api/users')
       .then(data => {
-        console.log(data.data.user)
+        //console.log(data.data.user)
         setUser(data.data.user);
       })
   }, []);
@@ -26,7 +26,7 @@ export default function SearchUser() {
 
   const handleSearch = e => {
     let target = e.target;
-    console.log(target.value);
+    //console.log(target.value);
     if (target.value === "")
     {
       setItems(user);
@@ -44,7 +44,7 @@ export default function SearchUser() {
 
 
   const handleFilter = e => {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     setFilter(e.target.value);
   }
   if (!items)

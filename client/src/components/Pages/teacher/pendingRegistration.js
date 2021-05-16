@@ -18,7 +18,7 @@ export default function PendingReg() {
   const handleUser = () => {
     axios.get('/api/allReg')
       .then(data => {
-        console.log(data.data.reg)
+        //console.log(data.data.reg)
         setUser(data.data.reg);
       });
   }
@@ -28,17 +28,17 @@ export default function PendingReg() {
   }, []);
 
   const handleVerified = (formId) => {
-    console.log(formId)
+    //console.log(formId)
     axios.post(`/api/student/status?id=${formId}&value=verified`)
       .then(res => {
         handleUser();
       })
   }
   const handleRejected = (formId) => {
-    console.log(formId)
+    //console.log(formId)
     axios.post(`/api/student/status?id=${formId}&value=rejected`)
       .then(res => {
-        console.log(res)
+        //console.log(res)
         handleUser();
       })
     return;
@@ -110,7 +110,7 @@ export default function PendingReg() {
   ];
   
   const rows = user.map((data, index) => {
-    console.log(data.file);
+    //console.log(data.file);
     return ({
       id: index,
       name: data.userId.name,

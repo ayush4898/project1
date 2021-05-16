@@ -14,22 +14,22 @@ function App() {
       setIsLoggedIn(true);
       (localStorage.getItem('userType')==='student')?setIsStudent(true):setIsStudent(false);
     }
-    console.log('use effect called!!');
-    console.log('userId', userId);
+    //console.log('use effect called!!');
+    //console.log('userId', userId);
   }, [userId]);
 
 
   const handleIsLogin = (e) => {
     setIsLoggedIn(e);
-    console.log("is login",isLoggedIn);
+    //console.log("is login",isLoggedIn);
   };
   const handleIsStudent = (e) => {
     setIsStudent(e);
-    console.log("isStudent is",isStudent);
+    //console.log("isStudent is",isStudent);
   };
   const handleUser =  (id) => {
       setUserId(id);
-    console.log("id is",userId);
+    //console.log("id is",userId);
   };
 
   if (!isLoggedIn) {

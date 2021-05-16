@@ -48,10 +48,10 @@ toast.configure();
               onSubmit={(values,{resetForm}) => {
 
                 SetButtonText("Submitting ...");
-                console.log(values);
-                console.log(department);
-                console.log(usertype);
-                console.log(program);
+                //console.log(values);
+                //console.log(department);
+                //console.log(usertype);
+                //console.log(program);
                 if (values.rollno === '')
                 {
                   values.rollno = 'NIL'
@@ -68,7 +68,7 @@ toast.configure();
                 }
                 axios.post(`/api/create-student`,user )
                 .then(res => {
-                  console.log(res);
+                  //console.log(res);
                   if(res.data.error){
                     toast.error(res.data.message, {
                       position: "top-right",

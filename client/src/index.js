@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import dotenv from 'dotenv';
 import  firebase from 'firebase/app';
-import 'firebase/storage'
+import 'firebase/storage';
 
-console.log(process.env);
+//console.log(process.env);
   var firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
     authDomain: "student-reg-4898.firebaseapp.com",

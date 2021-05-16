@@ -33,7 +33,7 @@ function Copyright() {
       height: '100vh',
     },
     image: {
-      backgroundImage: 'url(https://www.collegesearch.in/upload/institute/images/large/120928033013_xx.png)',
+      backgroundImage: `url(/background/nit_background.jpg)`,
       opacity: 0.8,
       backgroundRepeat: 'no-repeat',
       backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -102,10 +102,11 @@ const Login = (props) => {
           respond.data.valid && Notification("success", respond.data.message);
           !respond.data.valid && Notification("fail", respond.data.message);
         })
-        .catch((err) => { console.log(err) });
+        .catch((err) => { //console.log(err) 
+        });
     };
   const responseErrorGoogle=(res)=>{
-    console.log('error');
+    console.log('error',res);
   };
   const validationSchema=Yup.object({
       email: Yup.string().email('Invalid email address').required('Required'),
@@ -149,11 +150,12 @@ const Login = (props) => {
           return respond;
       })
       .then((respond)=>{
-        console.log(respond);
+        //console.log(respond);
         respond.data.valid && Notification("success", respond.data.message);
         !respond.data.valid && Notification("fail", respond.data.message);
       })
-      .catch((err) => { console.log(err) });
+        .catch((err) => { //console.log(err) 
+        });
     };
     
      

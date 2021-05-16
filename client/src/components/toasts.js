@@ -5,7 +5,7 @@ toast.configure()
 
 
  const notification = (state,message) =>{
-    console.log('notifiation props', state);
+    // console.log('notifiation props', state);
     if(state === "success"){
             toast.success(message, {
                 position: "top-right",
