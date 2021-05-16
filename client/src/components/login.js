@@ -16,6 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
  import * as Yup from 'yup';
 import axios from 'axios';
 import Notification from './toasts';
+
 function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
@@ -241,7 +242,6 @@ const Login = (props) => {
                             label="Remember me"
                         />
                         
-                        
                         <Button
                             type="submit"
                             fullWidth
@@ -251,7 +251,7 @@ const Login = (props) => {
                             Submit
                         </Button>
                         <GoogleLogin
-                              clientId="13936057190-g0sbfcp0nlbk3lqgc551mnija76vsvou.apps.googleusercontent.com"
+                              clientId= {process.env.REACT_APP_G_AUTH}
                               buttonText="Login With Google"
                               onSuccess={responseSuccessGoogle}
                               onFailure={responseErrorGoogle}

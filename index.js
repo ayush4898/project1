@@ -1,19 +1,23 @@
-    const express = require('express');
-    const cookieParser = require('cookie-parser');
-    const session = require('express-session');
-    const passport = require('passport');
-    const passportLocal = require('./config/passport_local');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport');
 const MongoStore = require('connect-mongo');
-const fileupload = require('express-fileupload');
 const path = require('path');
 const bodyParser = require('body-parser');
-    const cors = require('cors');
-    const port = process.env.PORT || 8000;
-    const db = require('./config/mongoose.js');  // using mongoose to connect to mongo db
+const cors = require('cors');
 const fileUpload = require('express-fileupload');
+require('dotenv').config();
+
+const passportLocal = require('./config/passport_local');
+const port = process.env.PORT || 8000;
+const db = require('./config/mongoose.js');  // using mongoose to connect to mongo db
+
 
 const app = express();
-const whitelist = ['http://localhost:3000', 'http://localhost:8000', 'https://stark-everglades-73789.herokuapp.com']
+
+
+const whitelist = ['http://localhost:3000', 'http://localhost:8000','http://localhost:8000/', 'https://stark-everglades-73789.herokuapp.com']
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("** Origin of request " + origin)
@@ -27,7 +31,6 @@ const corsOptions = {
   }
 }
 app.use(cors(corsOptions));
-
 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
@@ -44,7 +47,7 @@ app.use(fileUpload());
 
     app.use(session({
         name: 'userRegistration',
-        secret: 'user', //TODO to generalize
+        secret: process.env.SESSION_SECRET, //TODO to generalize
         saveUninitialized: false,
         resave: false,
         cookie: {

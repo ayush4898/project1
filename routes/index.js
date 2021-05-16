@@ -5,7 +5,7 @@ const User = require('../models/User');
 const router = express.Router();
 const {OAuth2Client} =require('google-auth-library');
 
-const client= new OAuth2Client("13936057190-g0sbfcp0nlbk3lqgc551mnija76vsvou.apps.googleusercontent.com");
+const client= new OAuth2Client(process.env.G_AUTH);
 
 router.use('/create-student', require('./createStudents'));
 
@@ -48,7 +48,7 @@ router.post('/googleLogin',(req,res)=>{
     const {tokenId}=req.body;
      client.verifyIdToken({
         idToken: tokenId,
-        audience: "13936057190-g0sbfcp0nlbk3lqgc551mnija76vsvou.apps.googleusercontent.com"
+        audience: process.env.G_AUTH
     }).then(async (response) => {
         console.log(response.payload);
         const { email_verified, name, email } = response.payload;
