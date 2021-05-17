@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Grid,Paper} from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import "../../App.css";
+import Spinner from './helper/spinner';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -33,7 +34,11 @@ const About = () => {
         setUser(data.data.user);
       });
   },[]);
-
+  if (!user)
+  {
+    return <Spinner />
+    // return <div>No user found!!</div>
+  }
   return (
     <>
     <div className={classes.root}>

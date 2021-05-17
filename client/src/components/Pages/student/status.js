@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { blue, green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
 import Chip from '@material-ui/core/Chip';
+import Spinner from '../helper/spinner';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 const Status = () => {
   const classes=useStyles();
   let [isEmpty, setEmpty] = useState(true);
-  let [forms, setForms] = useState([]);
+  let [forms, setForms] = useState('');
 
   useEffect(() => {
     axios.get(`/api/student/form/${localStorage.userId}`)
@@ -41,7 +42,11 @@ const Status = () => {
       .catch(Error => {
         //console.lof(Error);
       });
-  },[])
+  }, [])
+  if (!forms)
+  {
+    return <Spinner />
+    }
 
   return (
     isEmpty ?

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { TextField ,InputAdornment, Select ,InputLabel , MenuItem } from '@material-ui/core';
 import { Search } from "@material-ui/icons";
 import SimplePopover from "../helper/popover.js"
+import Spinner from '../helper/spinner.js';
 
 
 export default function SearchUser() {
@@ -49,7 +50,7 @@ export default function SearchUser() {
   }
   if (!items)
   {
-    return <div>No user found!!</div>
+    return <Spinner />
   }
   
   const columns = [

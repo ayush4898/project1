@@ -9,17 +9,21 @@ import CheckTwoToneIcon from '@material-ui/icons/CheckTwoTone';
 import { green } from '@material-ui/core/colors';
 import { red } from '@material-ui/core/colors';
 import Chip from '@material-ui/core/Chip';
+import Spinner from '../helper/spinner';
 
 
 export default function PendingReg() {
   
   const [user, setUser] = useState('');
+  const [loaded, setLoaded] = useState(true);
 
   const handleUser = () => {
     axios.get('/api/allReg')
       .then(data => {
         //console.log(data.data.reg)
         setUser(data.data.reg);
+      }).then(() => {
+        setLoaded(false);
       });
   }
 
@@ -48,7 +52,8 @@ export default function PendingReg() {
 
   if (!user)
   {
-    return <div>No user found!!</div>
+    return <Spinner />
+    // return <div>No user found!!</div>
   }
 
   const columns = [
@@ -125,8 +130,8 @@ export default function PendingReg() {
     })
   });
   
-
-  return (
+  
+  return user.length === 0 ?( <h1>No user found!!</h1>): (
     // <div>heloo</div>
     <div style={{ height: '80vh', width: '100%' }}>
       <DataGrid

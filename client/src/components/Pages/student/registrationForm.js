@@ -12,6 +12,7 @@ import * as Yup from 'yup';
 import firebase from 'firebase/app';
 import 'firebase/storage'; 
 import Notification from '../../toasts'
+import Spinner from '../helper/spinner';
 
 
 function RegistrationForm() {
@@ -96,6 +97,9 @@ function RegistrationForm() {
     setSemester(event.target.value);
     //console.log('user', user.email);
   };
+
+  if (!user) return <Spinner />
+  
   return (
     <div>
       <Grid>
@@ -191,13 +195,16 @@ function RegistrationForm() {
                     onChange={(e)=>setFile(e.target.files)}
                     id="contained-button-file"
                     type="file"
-                    style={marginBottom} />
+                    style={{marginBottom: 10}} />
                   <label htmlFor="contained-button-file">
-                    
                 </label>
+                <br />
+                <small style={{marginBottom : '5px'}}>*NOTE* Please upload the <strong>pdf format as name_rollno.pdf</strong></small>
+                <br />
+                <small style={{marginBottom : '10px'}}>*NOTE* Upload all the recipts in one pdf</small>
                   <Button
                     type="submit"
-                    style={marginBottom}
+                    style={marginBottom , {marginTop : '20px'}}
                     color="primary"
                     variant="contained"
                     fullWidth
