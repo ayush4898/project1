@@ -41,7 +41,7 @@ toast.configure();
             validationSchema={Yup.object({
                 name: Yup.string().matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ").required('Required'),
                email: Yup.string().email('Invalid email address').required('Please Enter Email'), 
-                password: Yup.string().min(1).max(20).required('please enter passsword'),
+                password: Yup.string().min(4).max(20).required('please enter passsword'),
                 confirm_password: Yup.string().oneOf([Yup.ref('password')], 'Passwords do not match').required('Required'),
               })}
 
@@ -287,7 +287,7 @@ toast.configure();
                  fullWidth label="Password" 
                  error={p.errors.password&&p.touched.password}
                    helperText={<ErrorMessage   name="password" />}
-                 type="text" />
+                 type="password" />
 
                 <Field as={TextField}
                  style={marginBottom} 
