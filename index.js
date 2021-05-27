@@ -13,7 +13,6 @@ const passportLocal = require('./config/passport_local');
 const port = process.env.PORT || 8000;
 const db = require('./config/mongoose.js');  // using mongoose to connect to mongo db
 
-
 const app = express();
 
 

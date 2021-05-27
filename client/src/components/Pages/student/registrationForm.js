@@ -31,20 +31,24 @@ function RegistrationForm() {
       });
    }, []);
 
-  const handleFile = async (uploadedFile) => {
-    try {
+  // const handleFile = async (uploadedFile) => {
+  //   try {
       
-      let file = uploadedFile[0];
-      const storageRef = firebase.storage().ref();
-      const emailRef = storageRef.child(user.email);
-      const fileRef = emailRef.child(file.name);
-      await fileRef.put(file);
-      const fileUrl = await fileRef.getDownloadURL();
-      setUrl(fileUrl);
-    } catch (error) {
-      //console.log(`error!!`, error);
-    }
+  //     let file = uploadedFile[0];
+  //     const storageRef = firebase.storage().ref();
+  //     const emailRef = storageRef.child(user.email);
+  //     const fileRef = emailRef.child(file.name);
+  //     await fileRef.put(file);
+  //     const fileUrl = await fileRef.getDownloadURL();
+  //     setUrl(fileUrl);
+  //   } catch (error) {
+  //     //console.log(`error!!`, error);
+  //   }
     
+  // };
+  const handleFile = async (uploaded) => {
+    let file = uploaded[0]; 
+    await setFile(file) 
   };
   const initialValues={
     // name: '', email: '', department: '',programme:""
@@ -58,8 +62,13 @@ function RegistrationForm() {
   const onSubmit = async (value, { resetForm }) => {
     SetButtonText("Submitting ...");
     try {
-     handleFile(uploadedFile);
+     //handleFile(uploadedFile);
+     const fileRef = await firebase.storage().ref(`${user.email}/${semester}/${uploadedFile.name}`);
+        await fileRef.put(uploadedFile);
+      const url=await fileRef.getDownloadURL();
+       await setUrl(url);
      //console.log(value);
+     
      let form = {
        name: user.name,
        email: user.email,
@@ -68,6 +77,7 @@ function RegistrationForm() {
        semester: semester,
        fileUrl: fileUrl
      }
+    
      let data = await axios.post(`/api/student/uploadForm/${localStorage.userId}`, form);
      //console.log(data);
 
@@ -192,7 +202,7 @@ function RegistrationForm() {
                   </Select>
                 </FormControl>
                  <input
-                    onChange={(e)=>setFile(e.target.files)}
+                    onChange={(e)=>handleFile(e.target.files)}
                     id="contained-button-file"
                     type="file"
                     style={{marginBottom: 10}} />
